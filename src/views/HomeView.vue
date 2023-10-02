@@ -33,65 +33,64 @@
 
 <script>
 export default {
-  name: 'HomeView',
-};
+    name: 'HomeView',
+  };
 </script>
 
 <style scoped>
-/* Gaya khusus untuk komponen ini */
-.landing-page {
-  text-align: center;
-  padding: 20px;
-}
+  .landing-page {
+    text-align: center;
+    padding: 20px;
+  }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-header {
-  margin-bottom: 40px;
-}
+  header {
+    margin-bottom: 40px;
+  }
 
-header h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
+  header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
 
-header p {
-  font-size: 18px;
-  color: #666;
-}
+  header p {
+    font-size: 18px;
+    color: #666;
+  }
 
-.features {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
 
-.feature {
-  flex-basis: 30%;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  margin: 0 5px;
-}
+  .feature {
+    flex-basis: 30%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin: 0 5px;
+  }
 
-.feature i {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #007bff;
-}
+  .feature i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #007bff;
+  }
 
-.feature h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+  .feature h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
-footer {
-  margin-top: 40px;
-  font-size: 14px;
-  color: #777;
-}
+  footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+  }
 </style>

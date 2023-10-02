@@ -4,19 +4,15 @@
       <div class="col-md-7">
         <img src="../components/img/todol.jpg" alt="" style="width: 400px; height: 250px;">
       </div>
-
       <div class="col-md-5">
         <h1 class="font-weight-light">What is This To-do List?</h1>
         <p class="mt-4">
           A to-do list is just a list of things you have to-do. That means basically anything and everything can be on your to-do list—but just because you've written your to-dos down doesn't mean your to-do list is actually useful. Effectively tracking when your work is due can help you prioritize and get great work done.
         </p>
         <a href="/todol" class="btn btn-primary">Go Explore Our To-do List</a>
-        
-        <!-- <button type="button" class="btn btn-primary">Go Explore Our To-do List</button> -->
         </div>
     </div>
   </div>
-
   <div class="container">
     <div class="row">
       <div class="col">
@@ -30,12 +26,7 @@
 </template>
 
 <script>
-export default {
-  name: 'AboutView',
-}
+  export default {
+    name: 'AboutView',
+  }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

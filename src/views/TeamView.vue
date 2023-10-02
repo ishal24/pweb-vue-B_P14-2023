@@ -10,12 +10,11 @@
           class="card-img-top" 
           alt="...">
          <div class="card-body">
-          <h5 class="card-title">Muhammad Faishal Rizki Ramadaniswara AhmadFauzan </h5>
+          <h5 class="card-title">Muhammad Faishal Rizqy</h5>
           <a href="#" class="btn btn-primary">5027221026</a>
         </div>
        </div>
       </div>  
-
       <div class="col-md-4">
         <div class="card">
           <img src="../components/img/steph.jpg" 
@@ -27,7 +26,6 @@
         </div>
        </div>
       </div>  
-
       <div class="col-md-4">
         <div class="card">
         <img 
@@ -40,21 +38,12 @@
         </div>
        </div>
       </div>  
-
-
     </div>
-    
-    
   </div>
 </template>
 
 <script>
-export default {
-  name: 'TeamView',
-}
+  export default {
+    name: 'TeamView',
+  }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
