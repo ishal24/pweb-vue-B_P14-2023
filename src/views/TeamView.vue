@@ -1,5 +1,5 @@
 <template>
-  <h1> Say Hello to Our Team from group P4! </h1>
+  <h1> Say Hello to Our Team from group P14! </h1>
   <h6> Meet the individuals who make our team unique and bring our vision to life. </h6>
   <br> 
   <div class="container">
