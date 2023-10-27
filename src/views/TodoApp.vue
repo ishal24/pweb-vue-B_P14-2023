@@ -1,134 +1,112 @@
 <template>
-  <div>
-    <h1>Plan of Attack</h1>
-    <h6>Oh dark, I have to do these to-do lists!</h6>
-    <div>
-      <input v-model="newTodo.text" placeholder="I have to do" />
-      <select v-model="newTodo.category">
-        <option value="High">High Priority</option>
-        <option value="Low">Low Priority</option>
-      </select>
-      <button @click="addTodo">Add</button>
+  <div class="container" style="width: 1000px;">
+    <h1 class="mt-4">To-Do List</h1>
+
+    <!-- Add New To-Do Form Row -->
+    <div class="row mb-3">
+      <div class="col" style="width: 15%;">
+        <input class="form-control" v-model="newTodo.title" placeholder="Task title" />
+      </div>
+      <div class="col" style="width: 30%;">
+        <textarea class="form-control" v-model="newTodo.description" placeholder="Task description"></textarea>
+      </div>
+      <div class="col" style="width: 15%;">
+        <input type="date" class="form-control" v-model="newTodo.dueDate" />
+      </div>
+      <div class="col" style="width: 20%;">
+        <select class="form-select" v-model="newTodo.category">
+          <option value="High">High Priority</option>
+          <option value="Low">Low Priority</option>
+        </select>
+      </div>
+      <div class="col" style="width: 20%;">
+        <button class="btn btn-primary" @click="addTodo">Add</button>
+      </div>
     </div>
-    <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        <label>
-          <input type="checkbox" v-model="todo.completed" />
-        </label>
-        <span :class="{ 'High': todo.category === 'High', 'completed': todo.completed }">{{ todo.text }}</span>
-        <button @click="editTodo(index)">Edit</button>
-        <button @click="deleteTodo(index)">Delete</button>
-        <form v-if="todo.editing" @submit="saveTodo(index)">
-          <input v-model="todo.text" />
-          <button type="submit">Save</button>
-        </form>
-      </li>
-    </ul>
+
+    <!-- Display Added To-Do Items -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Todo</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Priority</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(todo, index) in todos" :key="index">
+          <td>
+            <input type="checkbox" class="form-check-input" style="width: 20px;" v-model="todo.completed" />
+          </td>
+          <td>
+            <p class="mb-0" :style="{ 'text-decoration': todo.completed ? 'line-through' : 'none' }">{{ todo.title }}</p>
+          </td>
+          <td>
+            <p class="mb-0"><strong></strong> {{ todo.description }}</p>
+          </td>
+          <td>
+            <p class="mb-0"><strong></strong> {{ todo.dueDate }}</p>
+          </td>
+          <td>
+            <p class="mb-0"><strong></strong> {{ todo.category }}</p>
+          </td>
+          <td>
+            <button class="btn btn-info" @click="showEditDialog(index)">Edit</button>
+            <button class="btn btn-danger" @click="deleteTodo(index)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <button class="btn" @click="removeCompletedTodos">remove completed todos</button>
+    </div>
+
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+import { ref } from 'vue';
 
-  const todos = ref([
-    { text: 'Sisop', category: 'High', editing: false, completed: false },
-    { text: 'Tidur', category: 'Low', editing: false, completed: false },
-  ]);
+const todos = ref([]);
 
-  const newTodo = ref({
-    text: '',
-    category: 'High',
-    completed: false,
-  });
+// State for adding a new todo
+const newTodo = ref({
+  title: '',
+  description: '',
+  dueDate: '',
+  category: 'High',
+});
 
-  function addTodo() {
-    if (newTodo.value.text.trim() !== '') {
-      todos.value.push({ ...newTodo.value, editing: false });
-      newTodo.value.text = '';
-      newTodo.value.category = 'High';
-      newTodo.value.completed = false;
-    }
+// State for editing todo
+// const editingIndex = ref(-1);
+
+// Function to add a new todo
+function addTodo() {
+  if (newTodo.value.title.trim() !== '') {
+    todos.value.push({ ...newTodo.value, editing: false });
+    resetNewTodo();
   }
+}
 
-  function editTodo(index) {
-    todos.value[index].editing = true;
-  }
+// Function to delete a todo
+function deleteTodo(index) {
+  todos.value.splice(index, 1);
+}
 
-  function saveTodo(index) {
-    todos.value[index].editing = false;
-  }
+// Function to reset the newTodo state
+function resetNewTodo() {
+  newTodo.value.title = '';
+  newTodo.value.description = '';
+  newTodo.value.dueDate = '';
+  newTodo.value.category = 'High';
+}
 
-  function deleteTodo(index) {
-    todos.value.splice(index, 1);
-  }
+// Function to remove completed todos
+function removeCompletedTodos() {
+  todos.value = todos.value.filter((todo) => !todo.completed);
+}
 </script>
-
-<style scoped>
-  .completed {
-    text-decoration: line-through;
-  }
-</style>
-
-<style scoped>
-  div {
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  input {
-    width: 60%;
-    padding: 8px;
-    margin-right: 10px;
-  }
-
-  select {
-    width: 25%;
-    padding: 8px;
-    margin-right: 10px;
-  }
-
-  button {
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  button {
-    background-color: gray; 
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #0D6EFD;
-  }
-  .High {
-    font-weight: bold;
-    color:#0D6EFD; 
-  }
-</style>
